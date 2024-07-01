@@ -15,8 +15,12 @@ document.addEventListener("DOMContentLoaded", function() {
         
         localStorage.setItem("email", email);
         localStorage.setItem("passwordHash", passwordHash);
-
-        alert("Registro exitoso. Ahora puedes iniciar sesión.");
+        Swal.fire({
+            title: "Good job!",
+            text: "Registro exitoso. Ahora puedes iniciar sesión.!",
+            icon: "success"
+          });
+   
     });
 
     loginForm.addEventListener("submit", function(event) {
