@@ -1,6 +1,3 @@
-//00:50:00 para redirijir usando alerta
-
-
 let usuariosRegistrados = [];
 fetch("db.json")
     .then(response => response.json())
@@ -52,7 +49,8 @@ if (loginForm) {
                 Swal.fire({
                     title: "Ingreso Exitoso!",
                     text: "Puedes jugar!",
-                    icon: "success"
+                    icon: "success",
+                   
                   });
                   setTimeout(() => {
                     window.location.href = "../pages/game.html";
