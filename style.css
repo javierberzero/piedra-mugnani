@@ -1,3 +1,28 @@
+body{
+    text-align:  center;
+    align-items: center;
+}
+
+
+#piedra{
+    font-size: 3rem;
+    border-radius: 50px;
+    background: pink;
+    
+}
+#papel{
+    font-size: 3rem;
+    border-radius: 50px;
+    background: pink;
+  
+}
+#tijera{
+    font-size: 3rem;
+    border-radius: 50px;
+    background: pink;
+  
+}
+
 .modo-claro{
 background-color: aliceblue;
 color: black;
