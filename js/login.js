@@ -49,7 +49,15 @@ if (loginForm) {
         let usuarioEncontrado = usuariosRegistrados.find(usuario => usuario.email === email);
         if (usuarioEncontrado) {
             if (usuarioEncontrado.passwordHash === passwordHash) {
-                window.location.href = "../pages/game.html";
+                Swal.fire({
+                    title: "Ingreso Exitoso!",
+                    text: "Puedes jugar!",
+                    icon: "success"
+                  });
+                  setTimeout(() => {
+                    window.location.href = "../pages/game.html";
+
+                  }, 3000);
             } else {
                 Swal.fire({
                     title: "Error!",
