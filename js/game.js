@@ -1,6 +1,3 @@
-//crear  a logout
-
-
 class JuegoPiedraPapelTijera {
   constructor() {
     this.elejir = ["piedra", "papel", "tijera"];
@@ -14,26 +11,28 @@ class JuegoPiedraPapelTijera {
     this.puntajeElemento = document.getElementById("puntaje");
     this.rondasElemento = document.getElementById("rondas");
 
-    document
-      .getElementById("piedra")
-      .addEventListener("click", () => this.jugarRonda("piedra"));
-    document
-      .getElementById("papel")
-      .addEventListener("click", () => this.jugarRonda("papel"));
-    document
-      .getElementById("tijera")
-      .addEventListener("click", () => this.jugarRonda("tijera"));
+    this.botones = {
+      piedra: document.getElementById("piedra"),
+      papel: document.getElementById("papel"),
+      tijera: document.getElementById("tijera"),
+    };
 
-      document
-      .getElementById("reiniciar")
-      .addEventListener("click", () => this.reiniciarJuego());
-
+    this.botones.piedra.addEventListener("click", () => this.jugarRonda("piedra"));
+    this.botones.papel.addEventListener("click", () => this.jugarRonda("papel"));
+    this.botones.tijera.addEventListener("click", () => this.jugarRonda("tijera"));
+    document.getElementById("reiniciar").addEventListener("click", () => this.reiniciarJuego());
+    document.getElementById("iniciar").addEventListener("click", () => this.iniciarJuego());
 
     this.actualizarRondas();
     this.actualizarPuntaje();
   }
 
-  
+  iniciarJuego() {
+    const maxRondasInput = document.getElementById("maxRondas");
+    this.maxRondas = parseInt(maxRondasInput.value, 10) || 3;
+    this.reiniciarJuego();
+  }
+
   obtenerEleccionComputadora() {
     return this.elejir[Math.floor(Math.random() * this.elejir.length)];
   }
@@ -60,18 +59,17 @@ class JuegoPiedraPapelTijera {
   }
 
   actualizarRondas() {
-    this.rondasElemento.textContent = `Ronda ${this.rondaActual + 0} de ${
-      this.maxRondas
-    }`;
+    this.rondasElemento.textContent = `Ronda ${this.rondaActual + 1} de ${this.maxRondas}`;
   }
 
   jugarRonda(jugador1) {
     if (this.rondaActual >= this.maxRondas) {
-      this.resultadoElemento.textContent =
-        "El juego ha terminado. Reinicia la partida";
+      this.resultadoElemento.textContent = "El juego ha terminado. Presiona 'Reiniciar Juego' para jugar de nuevo.";
       return;
     }
-    this.resultadoElemento.textContent = "La computadora esta Eligiendo...";
+
+    this.resultadoElemento.textContent = "Eligiendo...";
+
     setTimeout(() => {
       const computadora = this.obtenerEleccionComputadora();
       const resultado = this.determinarGanador(jugador1, computadora);
@@ -82,9 +80,11 @@ class JuegoPiedraPapelTijera {
 
       if (this.rondaActual >= this.maxRondas) {
         this.mostrarResultadoFinal();
+        this.deshabilitarBotones();
       }
-    }, 2000); 
+    }, 1000);
   }
+
   mostrarResultadoFinal() {
     if (this.puntajeJugador > this.puntajeComputadora) {
       this.resultadoElemento.textContent += " ¡El jugador gana el juego!";
@@ -93,11 +93,21 @@ class JuegoPiedraPapelTijera {
     } else {
       this.resultadoElemento.textContent += " ¡El juego termina en empate!";
     }
-    
   }
+
+  deshabilitarBotones() {
+    this.botones.piedra.disabled = true;
+    this.botones.papel.disabled  = true;
+    this.botones.tijera.disabled = true;
+  }
+
+  habilitarBotones() {
+    this.botones.piedra.disabled = false;
+    this.botones.papel.disabled = false;
+    this.botones.tijera.disabled = false;
+  }
+
   reiniciarJuego() {
-
-
     this.puntajeJugador = 0;
     this.puntajeComputadora = 0;
     this.empate = 0;
@@ -105,13 +115,8 @@ class JuegoPiedraPapelTijera {
     this.resultadoElemento.textContent = "";
     this.actualizarPuntaje();
     this.actualizarRondas();
+    this.habilitarBotones();
   }
 }
 
-
-
-
 const juego = new JuegoPiedraPapelTijera();
-
-
-
