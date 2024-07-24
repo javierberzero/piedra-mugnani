@@ -59,7 +59,7 @@ class JuegoPiedraPapelTijera {
   }
 
   actualizarRondas() {
-    this.rondasElemento.textContent = `Ronda ${this.rondaActual + 1} de ${this.maxRondas}`;
+    this.rondasElemento.textContent = `Ronda ${this.rondaActual + 0} de ${this.maxRondas}`;
   }
 
   jugarRonda(jugador1) {
