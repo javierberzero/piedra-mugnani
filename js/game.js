@@ -10,7 +10,7 @@ class JuegoPiedraPapelTijera {
     this.resultadoElemento = document.getElementById("resultado");
     this.puntajeElemento = document.getElementById("puntaje");
     this.rondasElemento = document.getElementById("rondas");
-
+    
     this.botones = {
       piedra: document.getElementById("piedra"),
       papel: document.getElementById("papel"),
@@ -69,7 +69,10 @@ class JuegoPiedraPapelTijera {
     }
 
     this.resultadoElemento.textContent = "Eligiendo...";
+    this.deshabilitarBotones();
 
+    this.resultadoElemento.textContent = "Eligiendo...";
+  
     setTimeout(() => {
       const computadora = this.obtenerEleccionComputadora();
       const resultado = this.determinarGanador(jugador1, computadora);
@@ -77,10 +80,13 @@ class JuegoPiedraPapelTijera {
       this.rondaActual++;
       this.actualizarPuntaje();
       this.actualizarRondas();
-
+  
       if (this.rondaActual >= this.maxRondas) {
         this.mostrarResultadoFinal();
-        this.deshabilitarBotones();
+        this.deshabilitarBotones(); 
+      } else {
+       
+        this.habilitarBotones();
       }
     }, 1000);
   }

@@ -21,7 +21,12 @@ body{
     background: pink;
   
 }
-
+.modo-oscuro a{
+    color: lightblue;
+}
+.modo-claro a {
+    color: blue;
+}
 .modo-claro{
 background-color: aliceblue;
 color: black;
